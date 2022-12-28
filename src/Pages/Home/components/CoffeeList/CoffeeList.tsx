@@ -32,7 +32,7 @@ export function CoffeeList({ coffee }: CoffeeDataProps) {
                     <span key={tag}>{tag}</span>
                 ))}
             </Tags>
-            <h1>{coffee.name}</h1>
+            <h3>{coffee.name}</h3>
             <p>{coffee.description}</p>
             <Buy>
                 <Price>

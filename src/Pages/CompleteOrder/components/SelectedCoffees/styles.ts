@@ -14,7 +14,9 @@ export const CheckOut = styled(BaseStylesContainer)`
 export const CheckOutContainer = styled.div`
     max-height: 15.5rem;
     overflow: auto;
-`
+
+   `
+
 
 export const TotalPrice = styled.div`
     display: flex;

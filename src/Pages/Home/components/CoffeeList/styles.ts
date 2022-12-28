@@ -16,7 +16,7 @@ export const CoffeeListContainer = styled.div`
         margin-top: -1.25rem;
     }    
 
-    h1{
+    h3{
         font-family: 'Baloo 2' ;
         font-weight: bold;
         font-size: 1.25rem;

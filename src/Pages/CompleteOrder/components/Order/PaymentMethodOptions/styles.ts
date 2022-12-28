@@ -1,10 +1,12 @@
 import styled from "styled-components";
 
-export const PaymentMethod = styled.div`
+export const PaymentMethod = styled.button`
+
     width: 100%;
     padding: 1rem;
     
     display: flex;
+    border: none;
     
     align-items: center;
     gap:0.75rem ;

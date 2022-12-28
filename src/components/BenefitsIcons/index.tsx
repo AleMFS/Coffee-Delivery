@@ -5,7 +5,7 @@ import { ReactNode } from "react";
 
 interface IconsProps {
     icon: ReactNode
-    text: string
+    text: any
     statusColor: "yellowDark" | "yellow" | "black" | "purple"
 }
 

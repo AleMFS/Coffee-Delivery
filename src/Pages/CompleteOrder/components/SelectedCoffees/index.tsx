@@ -9,6 +9,8 @@ export function SelectedCoffees() {
                 <CheckOutContainer>
                     <Coffees />
                     <Coffees />
+                    <Coffees />
+                    
                 </CheckOutContainer>
                 <TotalPrice>
                     <TotalItens>
