@@ -12,7 +12,7 @@ export function Coffees() {
                     <div className="textos">
                         <p>Expresso tradicional</p>
                         <div className="segundo">
-                            <CountButton />
+                            {/*<CountButton />*/}
                             <Remove />
                         </div>
                     </div>
