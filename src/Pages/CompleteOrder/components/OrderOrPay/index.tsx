@@ -1,5 +1,4 @@
 import { Container } from "./styles";
-import { MapPinLine } from 'phosphor-react'
 import { ReactNode } from "react";
 
 interface OrderProps {

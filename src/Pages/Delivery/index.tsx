@@ -3,6 +3,7 @@ import { CurrencyDollar, MapPin, Timer } from 'phosphor-react'
 import delivery from '../../assets/Delivery.svg'
 import { BenefitsIcons } from "../../components/BenefitsIcons";
 
+
 export function Delivery() {
     
     return (

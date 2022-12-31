@@ -1,6 +1,7 @@
+import { CountButton } from "../../../../components/CountButton";
+import { Coffees } from "../../../../Data/Coffees";
+import { CoffeeList } from "../CoffeeList";
 
-import { Coffees } from "../../Data/Coffees";
-import { CoffeeList } from "../../Pages/Home/components/CoffeeList/CoffeeList";
 import { CoffeeContainer, CoffeeContent, CoffeeInfo } from "./styles";
 
 
@@ -13,7 +14,9 @@ export function OurCoffees() {
                 <h1>Nossos Cafés</h1>
                 <CoffeeInfo>
                     {Coffees.map(coffee => (
-                        <CoffeeList key={coffee.id} coffee={coffee} />
+                        <CoffeeList coffee={coffee}  />
+                       
+                        
                     ))}
              
                 </CoffeeInfo>

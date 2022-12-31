@@ -13,26 +13,25 @@ export const CountContainer = styled.div`
     
     
 
-   input{
-    max-width: 1.25rem;
-    text-align: center;
-    background: transparent;
+  
+   button{
+       
+        
+    }
+`
+export const BaseButtonQuantity = styled.button`
+    display: flex;
+    color: ${({ theme }) => theme.colors["purple"]};
     border: none;
-
-    &::placeholder{
-        color: ${({ theme }) => theme.colors["base-title"]};
-    }
-   }
-
-    button{
-        display: flex;
-        color: ${({ theme }) => theme.colors["purple"]};
-        border: none;
-        background: transparent;     
+    background: transparent;     
         
-        &:hover{
-            color: ${({ theme }) => theme.colors["purple-dark"]};
-        }
-        
+    &:hover{
+    color: ${({ theme }) => theme.colors["purple-dark"]};
     }
+`
+export const MoreQuantitySelect = styled(BaseButtonQuantity)`
+
+`
+export const LessQuantitySelect = styled(BaseButtonQuantity)`
+
 `

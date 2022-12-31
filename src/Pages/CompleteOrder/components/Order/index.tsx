@@ -1,7 +1,6 @@
-import { OrderOrPay } from "../../../../components/OrderOrPay";
+import { OrderOrPay } from "../OrderOrPay";
 import { Adreess, InputArea, OrderContainer, Payment } from "./styles";
 import { MapPinLine, CurrencyDollar } from 'phosphor-react'
-import { Input } from "../../../../components/Input";
 import { AddressForm } from "./AddressForm";
 import { OptionsPayment } from "./OptionsPayment";
 

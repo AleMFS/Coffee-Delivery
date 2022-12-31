@@ -1,20 +1,25 @@
-import { CountContainer } from "./styles";
+import { CountContainer, LessQuantitySelect, MoreQuantitySelect } from "./styles";
 import { Plus, Minus } from 'phosphor-react'
-import { useFormContext } from "react-hook-form";
 
-interface teste {
-    adicionar: () => void
-    remover: () => void
-    cont: number
+interface QuantityProps {
+    changeQuantity: (number: number) => void;
+    count: number;
 }
 
-export function CountButton({ adicionar, remover ,cont}: teste) {
-    const { register } = useFormContext()
+export function CountButton({ changeQuantity, count, }: QuantityProps) {
+
+
     return (
         <CountContainer>
-            <button onClick={remover} type="button" ><Minus size={14} weight="bold" /></button>
-            <input type="number"  {...register('coffees', { valueAsNumber: true })} value={cont} />
-            <button onClick={adicionar} type="button"><Plus size={14} weight="bold" /></button>
+            <MoreQuantitySelect type="button" onClick={() => count > 0 && changeQuantity(count - 1)}>
+                <Minus size={14} weight="bold" />
+            </MoreQuantitySelect>
+
+            {count}
+
+            <LessQuantitySelect type="button" onClick={() => changeQuantity(count + 1)}>
+                <Plus size={14} weight="bold" />
+            </LessQuantitySelect>
         </CountContainer>
     )
 }

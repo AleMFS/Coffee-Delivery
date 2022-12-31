@@ -1,8 +1,10 @@
 import { Benefits, HomeContainer, IntroContainer, IntroContent, IntroDetails, IntroInfo, IntroSubTitle, IntroTitle } from "./styles";
 import Introimg from '../../assets/Coffee.svg'
-import { BenefitsIcons } from "../../components/BenefitsIcons";
+
 import { ShoppingCart, Package, Timer, Coffee } from "phosphor-react";
-import { OurCoffees } from "../../components/OurCoffees";
+
+import { BenefitsIcons } from "../../components/BenefitsIcons";
+import { OurCoffees } from "./components/OurCoffees";
 
 export function Home() {
     return (
