@@ -40,15 +40,7 @@ export function CoffeeList({ coffee }: CoffeeDataProps) {
         setCount(quantity);
     }
 
-    function createProductsSelecteds(product: CreateProductsSelectedData, count: number) {
-        const newProductsSelected: CreateProductsSelectedData = {
-            price: product.price,
-            image: product.image,
-            name: product.name,
-            quantity: count,
-            id: product.id,
-        };
-    }
+    
     return (
         <CoffeeListContainer key={coffee.id}>
 
