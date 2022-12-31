@@ -38,6 +38,7 @@ interface CartCoffes {
 export function CoffeeList({ coffee }: CoffeeDataProps) {
     const formattedPrice = formatMoney(coffee.price)
     const [cart, setCart] = useState<CartCoffes[]>([])
+    let total:any = []
     const [cont, setCont] = useState(1)
 
     const countForm = useForm<CountCoffeForm>()
@@ -54,7 +55,9 @@ export function CoffeeList({ coffee }: CoffeeDataProps) {
             quantity: data.coffees
         }
         setCart(state => [...state, DateCoffe])
+        total.push(DateCoffe)
         console.log(cart)
+        console.log(total)
     }
     
 
