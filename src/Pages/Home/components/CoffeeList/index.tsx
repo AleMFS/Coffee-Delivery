@@ -2,7 +2,8 @@ import { CountButton } from '../../../../components/CountButton'
 import { ButtonCartBuy, Buy, CartBuy, CoffeeListContainer, Price, Tags } from './styles'
 import { ShoppingCartSimple, } from 'phosphor-react'
 import { formatMoney } from '../../../../utils/formatter';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { CartContext } from '../../../../context/CartContext';
 
 
 
@@ -32,6 +33,8 @@ interface CoffeeDataProps {
 
 
 export function CoffeeList({ coffee }: CoffeeDataProps) {
+    const { createProductsSelecteds } = useContext(CartContext)
+
     const formattedPrice = formatMoney(coffee.price)
 
     const [count, setCount] = useState(0)
@@ -40,9 +43,9 @@ export function CoffeeList({ coffee }: CoffeeDataProps) {
         setCount(quantity);
     }
 
-    
+
     return (
-        <CoffeeListContainer key={coffee.id}>
+        <CoffeeListContainer >
 
             <img src={coffee.image} alt="" />
             <Tags>

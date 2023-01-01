@@ -1,4 +1,5 @@
-import { Children, createContext, ReactNode } from "react";
+import { createContext, ReactNode } from "react";
+import { Coffees } from "../Data/Coffees"; 
 
 export interface CreateProductsSelectedData {
     price: number;
@@ -13,6 +14,7 @@ interface CartContextType {
         product: CreateProductsSelectedData,
         count: number
     ) => void;
+      
 
 }
 
