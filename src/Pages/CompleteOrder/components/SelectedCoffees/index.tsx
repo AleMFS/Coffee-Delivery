@@ -1,16 +1,21 @@
+import { useContext } from "react";
+import { CartContext } from "../../../../context/CartContext";
 import { Coffees } from "./Coffees";
 import { CheckOut, CheckOutContainer, ConfirmButton, SelectedCoffeesContainer, Shipping, Total, TotalItens, TotalPrice } from "./styles";
 
 export function SelectedCoffees() {
+    const { cartItems } = useContext(CartContext)
     return (
         <SelectedCoffeesContainer>
             <h1>Cafés selecionados</h1>
             <CheckOut>
                 <CheckOutContainer>
-                    <Coffees />
-                    <Coffees />
-                    <Coffees />
-                    
+                    {cartItems.map((productSelected) => (
+                        <Coffees coffeSelected={productSelected} key={productSelected.id} />
+                    ))}
+
+
+
                 </CheckOutContainer>
                 <TotalPrice>
                     <TotalItens>

@@ -10,8 +10,7 @@ import { CartContext } from '../../../../context/CartContext';
 export interface CreateProductsSelectedData {
     price: number;
     image?: string;
-    name: string;
-    quantity: number;
+    name: string;    
     id: number;
 }
 
@@ -64,6 +63,7 @@ export function CoffeeList({ coffee }: CoffeeDataProps) {
                     <CountButton changeQuantity={changeQuantity} count={count} />
 
                     <ButtonCartBuy
+                        disabled={count == 0}
                         type="button"
                         onClick={() => {
                             createProductsSelecteds(coffee, count)

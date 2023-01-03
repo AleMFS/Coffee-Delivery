@@ -3,10 +3,12 @@ import { MapPin, ShoppingCart } from 'phosphor-react'
 import Logo from '../../assets/Logo.svg'
 
 import { NavLink } from 'react-router-dom'
-import { useState } from "react";
+import { useContext } from "react";
+import { CartContext } from "../../context/CartContext";
 
 export function Header() {
-    const [cont,setcont] = useState(2)
+    const {totalCoffees } = useContext(CartContext)
+    
 
     return (
         <HeaderContainer>
@@ -24,7 +26,7 @@ export function Header() {
                         <NavLink to='/completeorder'>
                             <ShoppingCart weight="fill" size={22} />                                                      
                         </NavLink>
-                        <div>2</div> 
+                        {totalCoffees > 0? <div>{totalCoffees}</div> : '' }
 
                     </Cart>
 

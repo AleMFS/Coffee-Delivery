@@ -1,4 +1,14 @@
-export const Coffees = 
+export interface Coffees {
+   id:number;
+   name:string;
+   description:string;
+   price:number;
+   image:string
+   tags:string[],
+   quantity:number
+}
+
+export const Coffees:Coffees[] = 
 [
    {
       id: 0,
