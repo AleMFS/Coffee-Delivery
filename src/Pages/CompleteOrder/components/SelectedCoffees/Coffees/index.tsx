@@ -2,23 +2,23 @@ import { CoffeesContainer } from "./styles";
 import americano from '../../../../../assets/coffee/Americano.svg'
 import { CountButton } from "../../../../../components/CountButton";
 import { Remove } from "./Remove";
-import { CartContext, CartItemsProps, CreateProductsSelectedData } from "../../../../../context/CartContext";
+import { CartContext } from "../../../../../context/CartContext";
 import { formatMoney } from "../../../../../utils/formatter";
 import { useContext, useState } from "react";
 
 interface CoffeesSelectedProps {
-    coffeSelected: CartItemsProps
+    coffeSelected: any
 }
 
 export function Coffees({ coffeSelected }: CoffeesSelectedProps) {
-    const { changeCartItemQuantity, removeCartItem } = useContext(CartContext)
-    const formattedPrice = formatMoney(coffeSelected.price)
 
+    const formattedPrice = formatMoney(coffeSelected.price)
+    const { removeCartItem } = useContext(CartContext)
     const [count, setCount] = useState(coffeSelected.quantity);
 
     const changeQuantityCart = (quantity: number) => {
         setCount(quantity);
-        changeCartItemQuantity(coffeSelected.id, count);
+
     };
 
     const handleRemoveItemCart = () => {

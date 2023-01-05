@@ -1,22 +1,20 @@
 import { createContext, ReactNode, useState } from "react";
 import { produce } from 'immer'
 import { CreateProductsSelectedData } from "../Pages/Home/components/CoffeeList";
+import { Coffees } from "../Data/Coffees";
 
 
 
-export interface CartItemsProps extends CreateProductsSelectedData {
-    quantity: number
-}
+
 
 interface CartContextType {
     createProductsSelecteds: (
-        product: CartItemsProps,
+        product: Coffees,
         count: number
     ) => void;
-    changeCartItemQuantity: (cartItemId: number, newQuantity: number) => void
     removeCartItem: (cartItemId: number) => void
     totalCoffees: number
-    cartItems: CartItemsProps[]
+    cartItems: Coffees[]
 
 
 }
@@ -29,60 +27,63 @@ export const CartContext = createContext({} as CartContextType)
 
 export function CartContextProvider({ children }: CartContextProviderProps) {
 
-    const [cartItems, setCartItems] = useState<CartItemsProps[]>([])
+    const [cartItems, setCartItems] = useState<Coffees[]>([])
     const totalCoffees = cartItems.length
 
 
 
-    function createProductsSelecteds(product: CartItemsProps, count: number) {
+    function createProductsSelecteds(product: Coffees, count: number) {
 
-        const coffeeAlreadyExistInCart = cartItems.findIndex((cartItem) => cartItem.id === product.id);
+        const coffeData = {
+            id: product.id,
+            name: product.name,
+            image: product.image,
+            price: product.price,
+            tags: product.tags,
+            description: product.description,
+            quantity: count
+        }
+        if (!totalCoffees) {
+            setCartItems(state => [...state, coffeData])
+        } else {
+            let coffeeExistInCart = cartItems.findIndex(obj => obj.id === coffeData.id);
 
-        const newCart = produce(cartItems, (draft) => {
-            if (coffeeAlreadyExistInCart < 0) {
-                draft.push(product)
-                product.quantity = count
-
+            if (coffeeExistInCart > -1) {
+                cartItems[coffeeExistInCart].quantity += count;
             } else {
-                draft[coffeeAlreadyExistInCart].quantity += count
+                setCartItems(state => [...state, coffeData])
             }
-        })
+        }
 
-        setCartItems(newCart)
+
     }
 
-    function changeCartItemQuantity(cartItemId: number, count: number) {
+
+    /*function changeCartItemQuantity(cartItemId: number, count: number) {
         const coffeeExistInCart = cartItems.findIndex((cartItem) => cartItem.id === cartItemId);
-
-        const newCart = produce(cartItems, (draft) => {
-            if (draft[coffeeExistInCart].quantity == 0) {
-                console.log('ola')
-            }
-
-            draft[coffeeExistInCart].quantity = count
-
-        })
-        setCartItems(newCart)
-    };
+            console.log('ola')
+       
+    };*/
 
     function removeCartItem(cartItemId: number) {
-        
-        const coffeeExistInCart = cartItems.findIndex((cartItem) => cartItem.id === cartItemId);  
-        const newCart = produce(cartItems, (draft) => {
-             draft.splice(coffeeExistInCart,1)
-            
+
+        // USANDO IMMER
+        /*const newCart = produce(cartItems, (draft) => {
+            const coffeeExistsInCart = cartItems.findIndex((cartItem) => cartItem.id === cartItemId);
+            if (coffeeExistsInCart >= 0) {
+                draft.splice(coffeeExistsInCart, 1)
+            }
+
         })
-        setCartItems(newCart)
-       
-        /* const removeCoffeInCar = cartItems.filter((cartItem) => {
+        setCartItems(newCart)*/
+
+        const removeCoffeInCar = cartItems.filter((cartItem) => {
             return cartItem.id !== cartItemId;
         });
-        
+
         setCartItems(removeCoffeInCar)
-        console.log(removeCoffeInCar)*/
 
     }
-
 
 
 
@@ -93,7 +94,6 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
             createProductsSelecteds,
             totalCoffees,
             cartItems,
-            changeCartItemQuantity,
             removeCartItem
 
         }}>
