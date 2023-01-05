@@ -6,7 +6,7 @@ interface QuantityProps {
     count: number;
 }
 
-export function CountButton({ changeQuantity, count, }: QuantityProps) {
+export function CountButton({ changeQuantity, count }: QuantityProps) {
 
 
     return (

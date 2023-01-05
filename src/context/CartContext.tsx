@@ -1,23 +1,22 @@
 import { createContext, ReactNode, useState } from "react";
-import { current, produce } from 'immer'
+import { produce } from 'immer'
+import { CreateProductsSelectedData } from "../Pages/Home/components/CoffeeList";
 
 
 
-export interface CreateProductsSelectedData {
-    price: number;
-    image?: string;
-    name: string;
-    quantity: number;
-    id: number;
+export interface CartItemsProps extends CreateProductsSelectedData {
+    quantity: number
 }
 
 interface CartContextType {
     createProductsSelecteds: (
-        product: CreateProductsSelectedData,
+        product: CartItemsProps,
         count: number
     ) => void;
+    changeCartItemQuantity: (cartItemId: number, newQuantity: number) => void
+    removeCartItem: (cartItemId: number) => void
     totalCoffees: number
-    cartItems: CreateProductsSelectedData[]
+    cartItems: CartItemsProps[]
 
 
 }
@@ -30,20 +29,19 @@ export const CartContext = createContext({} as CartContextType)
 
 export function CartContextProvider({ children }: CartContextProviderProps) {
 
-    const [cartItems, setCartItems] = useState<CreateProductsSelectedData[]>([])
+    const [cartItems, setCartItems] = useState<CartItemsProps[]>([])
     const totalCoffees = cartItems.length
 
 
 
-    function createProductsSelecteds(product: CreateProductsSelectedData, count: number) {
+    function createProductsSelecteds(product: CartItemsProps, count: number) {
 
         const coffeeAlreadyExistInCart = cartItems.findIndex((cartItem) => cartItem.id === product.id);
-
-
 
         const newCart = produce(cartItems, (draft) => {
             if (coffeeAlreadyExistInCart < 0) {
                 draft.push(product)
+                product.quantity = count
 
             } else {
                 draft[coffeeAlreadyExistInCart].quantity += count
@@ -51,24 +49,41 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
         })
 
         setCartItems(newCart)
+    }
 
+    function changeCartItemQuantity(cartItemId: number, count: number) {
+        const coffeeExistInCart = cartItems.findIndex((cartItem) => cartItem.id === cartItemId);
 
+        const newCart = produce(cartItems, (draft) => {
+            if (draft[coffeeExistInCart].quantity == 0) {
+                console.log('ola')
+            }
 
+            draft[coffeeExistInCart].quantity = count
 
+        })
+        setCartItems(newCart)
+    };
 
-
-
-
-
-        /* const newProductsSelected: CreateProductsSelectedData = {
-             price: product.price,
-             image: product.image,
-             name: product.name,
-             quantity: count,
-             id: product.id,
-         };*/
+    function removeCartItem(cartItemId: number) {
+        
+        const coffeeExistInCart = cartItems.findIndex((cartItem) => cartItem.id === cartItemId);  
+        const newCart = produce(cartItems, (draft) => {
+             draft.splice(coffeeExistInCart,1)
+            
+        })
+        setCartItems(newCart)
+       
+        /* const removeCoffeInCar = cartItems.filter((cartItem) => {
+            return cartItem.id !== cartItemId;
+        });
+        
+        setCartItems(removeCoffeInCar)
+        console.log(removeCoffeInCar)*/
 
     }
+
+
 
 
 
@@ -77,10 +92,14 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
         <CartContext.Provider value={{
             createProductsSelecteds,
             totalCoffees,
-            cartItems
+            cartItems,
+            changeCartItemQuantity,
+            removeCartItem
 
         }}>
             {children}
         </CartContext.Provider>
     )
 }
+
+export type { CreateProductsSelectedData };
