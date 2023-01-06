@@ -11,7 +11,7 @@ export function OptionsPayment() {
             control={control}
             name="type"
             render={({ field }) => {
-                console.log(field)
+                
                 return (
                     <OptionsPaymentContainer
                         onValueChange={field.onChange}

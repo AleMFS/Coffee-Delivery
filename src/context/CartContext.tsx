@@ -43,6 +43,7 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     const [cartItems, setCartItems] = useState<Coffees[]>([])
     const totalCoffees = cartItems.length
 
+    const [dataForm, setDataForm] = useState({})
    
 
 
@@ -99,9 +100,8 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     }
 
     function createFormAdrress(data: DataForm){
-        const newForm = {
-            
-        }
+        setDataForm(data)
+        console.log(dataForm)
     }
 
 

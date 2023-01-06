@@ -1,30 +1,51 @@
 import { useFormContext } from 'react-hook-form'
 import { Input } from "../../../../components/Input";
-import { InputArea } from "./styles";
+import { useForm, SubmitHandler } from 'react-hook-form'
+import { InputArea, InputCEPForm, InputCityForm, InputComplementForm, InputDistrictForm, InputNumberForm, InputStreetForm, InputUFForm } from "./styles";
 
 
+interface AdrressForm {
+    cep: number
+    rua: string
+    numero: string;
+    bairro: string;
+    cidade: string;
+    complemento: string
+    uf: string
+}
 
 export function AddressForm() {
-    const { register } = useFormContext()
+    
+    const { register, handleSubmit } = useForm<AdrressForm>()
 
-   
+    function handleSubmitForm(data: AdrressForm) {
+        console.log(data)
+    }
+
+
+
+
 
     return (
-        
-        <InputArea>
-            <Input placeholder="CEP" id='cep' type="number" className="cep" required {...register("cep", { valueAsNumber: true })} />
 
-            <Input placeholder="Rua" id='rua' className="street" required {...register("rua")} />
+        <InputArea id="my-form" onSubmit={handleSubmit(handleSubmitForm)}>
 
-            <Input placeholder="Número" id='numero' type="text" required {...register("numero", { valueAsNumber: true })} />
 
-            <Input placeholder="Complemento" id='complemento' className="complement" {...register("complemento")} />
+            <InputCEPForm placeholder="CEP" id='cep' type="text" className="cep"  {...register('cep', { valueAsNumber: true })} />
 
-            <Input placeholder="Bairro" id='bairro' required {...register("bairro")} />
+            <InputStreetForm placeholder="Rua" id='rua' className="street" required {...register("rua")} />
 
-            <Input placeholder="Cidade" id='cidade' required {...register("cidade")} />
+            <InputNumberForm placeholder="Número" id='numero' type="text" required {...register("numero")} />
 
-            <Input placeholder="UF" id='uf' required {...register("uf")} />
+            <InputComplementForm  id='complemento' className="complement" {...register("complemento")}  placeholder="Complemento                                                            Opcional"/>
+
+            <InputDistrictForm placeholder="Bairro" id='bairro' required {...register("bairro")} />
+
+            <InputCityForm placeholder="Cidade" id='cidade' required {...register("cidade")} />
+
+            <InputUFForm placeholder="UF" id='uf' required {...register("uf")} maxLength={2} />
+
+
 
         </InputArea>
     )

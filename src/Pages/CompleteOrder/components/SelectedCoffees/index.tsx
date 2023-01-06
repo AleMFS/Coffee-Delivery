@@ -1,34 +1,19 @@
 import { useContext, useState, } from "react";
 import { useFormContext } from "react-hook-form";
+import { NavLink } from "react-router-dom";
 import { CartContext } from "../../../../context/CartContext";
 import { Coffees } from "./Coffees";
 import { CheckOut, CheckOutContainer, ConfirmButton, SelectedCoffeesContainer, Shipping, Total, TotalItens, TotalPrice } from "./styles";
 
 interface DataForm {
-    cep: number;
-    rua: string;
-    numero: number | string;
-    complemento?: string;
-    bairro: string;
-    cidade: string;
-    uf: string;
-    type: string;
+    cep: string    
 }
 
 
 export function SelectedCoffees() {
     const { handleSubmit } = useFormContext()
-    const { cartItems, totalCoffees , createFormAdrress} = useContext(CartContext)
-
-    const [pedido, setPedido] = useState<DataForm[]>([])
-
-    function handleSubmitForm(data:any) {
-
-        createFormAdrress(data)
-    }
-
-
-
+    const { cartItems, totalCoffees, createFormAdrress } = useContext(CartContext)
+   
     return (
         <SelectedCoffeesContainer>
             <h1>Cafés selecionados</h1>
@@ -37,8 +22,7 @@ export function SelectedCoffees() {
                     {cartItems.map((productSelected) => (
                         <Coffees coffeSelected={productSelected} key={productSelected.id} />
                     ))}
-                    { }
-
+                    
 
                 </CheckOutContainer>
                 <TotalPrice>
@@ -55,7 +39,9 @@ export function SelectedCoffees() {
                         <p>R$ 23,30</p>
                     </Total>
                 </TotalPrice>
-                <ConfirmButton onSubmit={handleSubmit(handleSubmitForm)}>CONFIRMAR PEDIDO</ConfirmButton>
+              
+                    <ConfirmButton form="my-form"> CONFIRMAR PEDIDO</ConfirmButton>
+                
             </CheckOut>
         </SelectedCoffeesContainer>
     )
