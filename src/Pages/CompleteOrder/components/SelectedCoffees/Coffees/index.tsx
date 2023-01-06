@@ -10,16 +10,15 @@ interface CoffeesSelectedProps {
     coffeSelected: any
 }
 
-export function Coffees({ coffeSelected }: CoffeesSelectedProps) {    
-    const { removeCartItem } = useContext(CartContext)
+export function Coffees({ coffeSelected }: CoffeesSelectedProps) {
+    const { removeCartItem,  } = useContext(CartContext)
     const [count, setCount] = useState(coffeSelected.quantity);
 
-    const changeQuantityCart = (quantity: number) => {
-        setCount(quantity);
-
-    };
-
-
+    function handleChangeQuantity(quantity: number) {
+        setCount(quantity)
+        
+    }
+   
 
 
     const handleRemoveItemCart = () => {
@@ -34,7 +33,7 @@ export function Coffees({ coffeSelected }: CoffeesSelectedProps) {
                         <p>{coffeSelected.name}</p>
                         <div className="segundo">
 
-                            {<CountButton count={count} changeQuantity={changeQuantityCart} />}
+                            {<CountButton count={count} changeQuantity={handleChangeQuantity} id={coffeSelected.id} />}
                             <Remove removeItemCart={handleRemoveItemCart} />
                         </div>
                     </div>

@@ -32,15 +32,17 @@ interface CoffeeDataProps {
 
 
 export function CoffeeList({ coffee }: CoffeeDataProps) {
-    const { createProductsSelecteds } = useContext(CartContext)
+    const { createProductsSelecteds, } = useContext(CartContext)
 
     const formattedPrice = formatMoney(coffee.price)
 
     const [count, setCount] = useState(0)
 
-    function changeQuantity(quantity: number) {
+    function handleChangeQuantity(quantity: number) {
         setCount(quantity);
+       
     }
+    
 
 
     return (
@@ -60,7 +62,7 @@ export function CoffeeList({ coffee }: CoffeeDataProps) {
                     {formattedPrice}</Price>
                 <CartBuy>
 
-                    <CountButton changeQuantity={changeQuantity} count={count} />
+                    <CountButton changeQuantity={handleChangeQuantity} count={count} />
 
                     <ButtonCartBuy
                         disabled={count == 0}

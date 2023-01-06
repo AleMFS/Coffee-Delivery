@@ -2,19 +2,11 @@ import { createContext, ReactNode, useEffect, useState } from "react";
 import { produce } from 'immer'
 import { CreateProductsSelectedData } from "../Pages/Home/components/CoffeeList";
 import { Coffees } from "../Data/Coffees";
+import { AdrressForm } from "../Pages/CompleteOrder";
 
 
 
-export interface DataForm {
-    cep: number;
-    rua: string;
-    numero: number | string;
-    complemento?: string;
-    bairro: string;
-    cidade: string;
-    uf: string;
-    type: string;
-}
+
 
 interface CartContextType {
     createProductsSelecteds: (
@@ -24,9 +16,12 @@ interface CartContextType {
     removeCartItem: (cartItemId: number) => void
     totalCoffees: number
     cartItems: Coffees[]
-    createFormAdrress: (data:DataForm ) => void
-    
-    
+    createFormAdrress: (dataForm: AdrressForm) => void
+    dataForm: AdrressForm[]
+    changeQuantityInCart: (number: number, id: number) => void
+    priceTotal: number
+
+
 
 
 
@@ -41,11 +36,24 @@ export const CartContext = createContext({} as CartContextType)
 export function CartContextProvider({ children }: CartContextProviderProps) {
 
     const [cartItems, setCartItems] = useState<Coffees[]>([])
+    const [dataForm, setDataForm] = useState<AdrressForm[]>([])
+    const [priceTotal, setPriceTotal] = useState(0)
     const totalCoffees = cartItems.length
 
-    const [dataForm, setDataForm] = useState({})
-   
 
+
+    function update() {
+
+        const contagem = cartItems.reduce((acc, cur) => acc + (cur.price * cur.quantity), 0)
+        setPriceTotal(contagem)
+
+    }
+
+    useEffect(() => {
+        update()
+    }, [cartItems])
+
+    
 
     function createProductsSelecteds(product: Coffees, count: number) {
 
@@ -57,12 +65,15 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
             tags: product.tags,
             description: product.description,
             quantity: count
+
         }
+
         if (!totalCoffees) {
             setCartItems(state => [...state, coffeData])
 
         } else {
-            let coffeeExistInCart = cartItems.findIndex(obj => obj.id === coffeData.id);
+
+            const coffeeExistInCart = cartItems.findIndex(obj => obj.id === coffeData.id);
 
             if (coffeeExistInCart > -1) {
                 cartItems[coffeeExistInCart].quantity += count;
@@ -73,9 +84,23 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
 
             }
         }
+    }
 
+    function changeQuantityInCart(countCoffees: number, coffeID: number) {
+
+        if (totalCoffees) {
+            const coffeeExistInCart = cartItems.findIndex(obj => obj.id === coffeID);
+
+            if (coffeeExistInCart > -1) {
+                cartItems[coffeeExistInCart].quantity = countCoffees;
+
+                update()
+
+            }
+        }
 
     }
+
 
 
     function removeCartItem(cartItemId: number) {
@@ -86,7 +111,7 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
             if (coffeeExistsInCart >= 0) {
                 draft.splice(coffeeExistsInCart, 1)
             }
-
+ 
         })
         setCartItems(newCart)*/
 
@@ -99,7 +124,8 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
 
     }
 
-    function createFormAdrress(data: DataForm){
+    function createFormAdrress(data: any) {
+
         setDataForm(data)
         console.log(dataForm)
     }
@@ -112,8 +138,12 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
             totalCoffees,
             cartItems,
             removeCartItem,
-            createFormAdrress
-            
+            createFormAdrress,
+            dataForm,
+            changeQuantityInCart,
+            priceTotal
+
+
 
 
         }}>

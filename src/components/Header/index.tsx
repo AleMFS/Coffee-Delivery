@@ -7,7 +7,9 @@ import { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
 
 export function Header() {
-    const { totalCoffees } = useContext(CartContext)
+    const { totalCoffees , cartItems} = useContext(CartContext)
+
+    
 
 
     return (
