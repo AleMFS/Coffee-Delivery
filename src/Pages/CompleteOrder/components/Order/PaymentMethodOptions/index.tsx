@@ -4,12 +4,12 @@ import { ReactNode } from "react";
 
 interface PaymentProps{
     icon: ReactNode;
-    text: string
+    text: "CARTÃO DE CRÉDITO" | "CARTÃO DE DÉBITO" | "DINHEIRO"
 }
 
 export function PaymentMethodOptions({ icon, text}:PaymentProps) {
     return (
-        <PaymentMethod>
+        <PaymentMethod value={text} required>
             {icon}
             <p>{text}</p>
         </PaymentMethod>

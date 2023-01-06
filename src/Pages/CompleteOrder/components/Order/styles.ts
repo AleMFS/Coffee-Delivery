@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { BaseStylesContainer, ContainerStyle } from "../../styles";
+import * as RadioGroup from '@radix-ui/react-radio-group';
 
 export const OrderContainer = styled(ContainerStyle)` 
 
@@ -35,7 +36,7 @@ export const Payment = styled(BaseStylesContainer)`
     margin-top: 0.75rem;
 `
 
-export const OptionsPaymentContainer = styled.div`
+export const OptionsPaymentContainer = styled(RadioGroup.Root)`
     display: grid;
     grid-template-columns: repeat(3,1fr);
     gap: 0.75rem;
