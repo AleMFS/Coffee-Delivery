@@ -1,10 +1,31 @@
-import { useContext,} from "react";
+import { useContext, useState, } from "react";
+import { useFormContext } from "react-hook-form";
 import { CartContext } from "../../../../context/CartContext";
 import { Coffees } from "./Coffees";
 import { CheckOut, CheckOutContainer, ConfirmButton, SelectedCoffeesContainer, Shipping, Total, TotalItens, TotalPrice } from "./styles";
 
+interface DataForm {
+    cep: number;
+    rua: string;
+    numero: number | string;
+    complemento?: string;
+    bairro: string;
+    cidade: string;
+    uf: string;
+    type: string;
+}
+
+
 export function SelectedCoffees() {
-    const { cartItems,totalCoffees } = useContext(CartContext)
+    const { handleSubmit } = useFormContext()
+    const { cartItems, totalCoffees , createFormAdrress} = useContext(CartContext)
+
+    const [pedido, setPedido] = useState<DataForm[]>([])
+
+    function handleSubmitForm(data:any) {
+
+        createFormAdrress(data)
+    }
 
 
 
@@ -16,7 +37,7 @@ export function SelectedCoffees() {
                     {cartItems.map((productSelected) => (
                         <Coffees coffeSelected={productSelected} key={productSelected.id} />
                     ))}
-                    {}
+                    { }
 
 
                 </CheckOutContainer>
@@ -34,7 +55,7 @@ export function SelectedCoffees() {
                         <p>R$ 23,30</p>
                     </Total>
                 </TotalPrice>
-                <ConfirmButton>CONFIRMAR PEDIDO</ConfirmButton>
+                <ConfirmButton onSubmit={handleSubmit(handleSubmitForm)}>CONFIRMAR PEDIDO</ConfirmButton>
             </CheckOut>
         </SelectedCoffeesContainer>
     )

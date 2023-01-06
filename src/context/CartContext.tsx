@@ -5,7 +5,16 @@ import { Coffees } from "../Data/Coffees";
 
 
 
-
+export interface DataForm {
+    cep: number;
+    rua: string;
+    numero: number | string;
+    complemento?: string;
+    bairro: string;
+    cidade: string;
+    uf: string;
+    type: string;
+}
 
 interface CartContextType {
     createProductsSelecteds: (
@@ -15,7 +24,9 @@ interface CartContextType {
     removeCartItem: (cartItemId: number) => void
     totalCoffees: number
     cartItems: Coffees[]
-    modificar: (number:number) => void
+    createFormAdrress: (data:DataForm ) => void
+    
+    
 
 
 
@@ -32,20 +43,7 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     const [cartItems, setCartItems] = useState<Coffees[]>([])
     const totalCoffees = cartItems.length
 
-    const [numeroCoffes, setNumeroCoffees] = useState(0)
-
-    function modificar(number: number) {
-        const numero = cartItems.reduce((acc, cur) => acc + cur.quantity, 0)
-        setNumeroCoffees(numero + number)
-        console.log(numeroCoffes)
-    }
-
-
-
-
-
-
-
+   
 
 
     function createProductsSelecteds(product: Coffees, count: number) {
@@ -79,12 +77,6 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     }
 
 
-    /*function changeCartItemQuantity(cartItemId: number, count: number) {
-        const coffeeExistInCart = cartItems.findIndex((cartItem) => cartItem.id === cartItemId);
-            console.log('ola')
-       
-    };*/
-
     function removeCartItem(cartItemId: number) {
 
         // USANDO IMMER
@@ -106,7 +98,11 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
 
     }
 
-
+    function createFormAdrress(data: DataForm){
+        const newForm = {
+            
+        }
+    }
 
 
 
@@ -116,7 +112,8 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
             totalCoffees,
             cartItems,
             removeCartItem,
-            modificar
+            createFormAdrress
+            
 
 
         }}>

@@ -10,19 +10,14 @@ interface CoffeesSelectedProps {
     coffeSelected: any
 }
 
-export function Coffees({ coffeSelected }: CoffeesSelectedProps) {
-    const formattedPrice = formatMoney(coffeSelected.price)
-    const { removeCartItem, modificar } = useContext(CartContext)
+export function Coffees({ coffeSelected }: CoffeesSelectedProps) {    
+    const { removeCartItem } = useContext(CartContext)
     const [count, setCount] = useState(coffeSelected.quantity);
 
     const changeQuantityCart = (quantity: number) => {
         setCount(quantity);
 
     };
-
-    useEffect(() => {
-        modificar(count)
-    }, [count])
 
 
 
