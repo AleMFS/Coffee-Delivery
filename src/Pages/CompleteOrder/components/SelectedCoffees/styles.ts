@@ -12,9 +12,11 @@ export const CheckOut = styled(BaseStylesContainer)`
     
 `
 export const CheckOutContainer = styled.div`
+    margin-right: -1rem;
+    padding-right: 1rem;
     max-height: 15.5rem;
     overflow: auto;
-
+    
    `
 
 

@@ -1,25 +1,31 @@
 import { CoffeesContainer } from "./styles";
-import americano from '../../../../../assets/coffee/Americano.svg'
+
 import { CountButton } from "../../../../../components/CountButton";
 import { Remove } from "./Remove";
 import { CartContext } from "../../../../../context/CartContext";
-import { formatMoney } from "../../../../../utils/formatter";
-import { useContext, useState } from "react";
+import { formatMoney, priceFormatter } from "../../../../../utils/formatter";
+import { useContext, useEffect, useState } from "react";
 
 interface CoffeesSelectedProps {
     coffeSelected: any
 }
 
 export function Coffees({ coffeSelected }: CoffeesSelectedProps) {
-
     const formattedPrice = formatMoney(coffeSelected.price)
-    const { removeCartItem } = useContext(CartContext)
+    const { removeCartItem, modificar } = useContext(CartContext)
     const [count, setCount] = useState(coffeSelected.quantity);
 
     const changeQuantityCart = (quantity: number) => {
         setCount(quantity);
 
     };
+
+    useEffect(() => {
+        modificar(count)
+    }, [count])
+
+
+
 
     const handleRemoveItemCart = () => {
         removeCartItem(coffeSelected.id)
@@ -28,7 +34,7 @@ export function Coffees({ coffeSelected }: CoffeesSelectedProps) {
         <CoffeesContainer>
             <div className="container">
                 <div className="primeiro">
-                    <img src={americano} alt="" />
+                    <img src={coffeSelected.image} alt="" />
                     <div className="textos">
                         <p>{coffeSelected.name}</p>
                         <div className="segundo">
@@ -38,7 +44,7 @@ export function Coffees({ coffeSelected }: CoffeesSelectedProps) {
                         </div>
                     </div>
                 </div>
-                <h2>R${formattedPrice}</h2>
+                <h2>{`R$${(count * coffeSelected.price).toFixed(2).replace('.', ',')}`}</h2>
             </div>
 
         </CoffeesContainer>

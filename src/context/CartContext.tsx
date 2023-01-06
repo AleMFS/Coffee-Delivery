@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useState } from "react";
+import { createContext, ReactNode, useEffect, useState } from "react";
 import { produce } from 'immer'
 import { CreateProductsSelectedData } from "../Pages/Home/components/CoffeeList";
 import { Coffees } from "../Data/Coffees";
@@ -15,6 +15,8 @@ interface CartContextType {
     removeCartItem: (cartItemId: number) => void
     totalCoffees: number
     cartItems: Coffees[]
+    modificar: (number:number) => void
+
 
 
 }
@@ -29,6 +31,20 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
 
     const [cartItems, setCartItems] = useState<Coffees[]>([])
     const totalCoffees = cartItems.length
+
+    const [numeroCoffes, setNumeroCoffees] = useState(0)
+
+    function modificar(number: number) {
+        const numero = cartItems.reduce((acc, cur) => acc + cur.quantity, 0)
+        setNumeroCoffees(numero + number)
+        console.log(numeroCoffes)
+    }
+
+
+
+
+
+
 
 
 
@@ -45,13 +61,17 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
         }
         if (!totalCoffees) {
             setCartItems(state => [...state, coffeData])
+
         } else {
             let coffeeExistInCart = cartItems.findIndex(obj => obj.id === coffeData.id);
 
             if (coffeeExistInCart > -1) {
                 cartItems[coffeeExistInCart].quantity += count;
+
+
             } else {
                 setCartItems(state => [...state, coffeData])
+
             }
         }
 
@@ -80,8 +100,9 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
         const removeCoffeInCar = cartItems.filter((cartItem) => {
             return cartItem.id !== cartItemId;
         });
-
         setCartItems(removeCoffeInCar)
+
+
 
     }
 
@@ -94,7 +115,9 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
             createProductsSelecteds,
             totalCoffees,
             cartItems,
-            removeCartItem
+            removeCartItem,
+            modificar
+
 
         }}>
             {children}
