@@ -27,11 +27,11 @@ export function OptionsPayment() {
 
                     >
                         
-                        <PaymentMethodOptions icon={<CreditCard size={16} />} text="CARTÃO DE CRÉDITO" />
+                        <PaymentMethodOptions icon={<CreditCard size={16} />} text="Cartão de crédito" />
 
-                        <PaymentMethodOptions icon={<Bank size={16} />} text="CARTÃO DE DÉBITO" />
+                        <PaymentMethodOptions icon={<Bank size={16} />} text="Cartão de débito" />
 
-                        <PaymentMethodOptions icon={<Money size={16} />} text="DINHEIRO" />
+                        <PaymentMethodOptions icon={<Money size={16} />} text="Dinheiro" />
 
                     </OptionsPaymentContainer>
                 )

@@ -5,7 +5,7 @@ import { CartContext } from "../../../../../context/CartContext";
 
 interface PaymentProps {
     icon: ReactNode;
-    text: "CARTÃO DE CRÉDITO" | "CARTÃO DE DÉBITO" | "DINHEIRO"
+    text: string
 }
 
 export function PaymentMethodOptions({ icon, text }: PaymentProps) {

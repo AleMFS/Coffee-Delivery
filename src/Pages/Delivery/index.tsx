@@ -2,9 +2,15 @@ import { DataContent, DeliveryContainer, DeliveryData } from "./styles";
 import { CurrencyDollar, MapPin, Timer } from 'phosphor-react'
 import delivery from '../../assets/Delivery.svg'
 import { BenefitsIcons } from "../../components/BenefitsIcons";
+import { useContext } from "react";
+import { CartContext } from "../../context/CartContext";
 
 
 export function Delivery() {
+    const {dataForm ,paymentValue} = useContext(CartContext)
+
+    
+   
     
     return (
         <DeliveryContainer>
@@ -17,9 +23,9 @@ export function Delivery() {
                             icon={<MapPin size={16} weight='fill' />}
                             statusColor='purple'
                             text={
-                                <span>Entrega em <strong>Rua João Daniel Martinelli, 102</strong>
+                                <span>Entrega em <strong>: {dataForm.rua} </strong>
                                     <br />
-                                    Farrapos - Porto Alegre, RS
+                                    {dataForm.bairro} - {dataForm.cidade}, {dataForm.uf}
                                 </span>
                             }
                         />
@@ -46,7 +52,7 @@ export function Delivery() {
                             text={
                                 <span>Pagamento na entrega
                                     <br />
-                                    <strong>Cartão de Crédito </strong>
+                                    <strong>{paymentValue} </strong>
                                 </span>
                             }
                         />
