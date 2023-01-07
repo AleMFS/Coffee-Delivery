@@ -9,24 +9,18 @@ import { AdrressForm } from "../Pages/CompleteOrder";
 
 
 interface CartContextType {
-    createProductsSelecteds: (
-        product: Coffees,
-        count: number
-    ) => void;
+    createProductsSelecteds: ( product: Coffees,count: number ) => void;
     removeCartItem: (cartItemId: number) => void
-    totalCoffees: number
-    cartItems: Coffees[]
     createFormAdrress: (dataForm: AdrressForm) => void
-    dataForm: any
     changeQuantityInCart: (number: number, id: number) => void
-    priceTotal: number
-    meansOfPayment: (value: any) => void,
-    paymentValue:string
-    clearCart: () =>void
+    meansOfPayment: (value: any) => void
+    clearCart: () => void
 
-
-
-
+    totalCoffees: number
+    cartItems: Coffees[]    
+    dataForm: any    
+    priceTotal: number    
+    paymentValue: string    
 
 }
 
@@ -44,12 +38,13 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     const [paymentValue, setPaymentValue] = useState("")
     const totalCoffees = cartItems.length
 
-    console.log(dataForm)
 
-    function clearCart(){
+    // função para limpar o carrinho depois de completado o pedido.
+    function clearCart() {
         setCartItems([])
     }
 
+    // função que atualiza o valor total do pedido e da compra
     function update() {
 
         const contagem = cartItems.reduce((acc, cur) => acc + (cur.price * cur.quantity), 0)
@@ -61,9 +56,9 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
         update()
     }, [cartItems])
 
-        
 
 
+    // função para guardar no state quais foram os pedidos escolhidos e suas quantidades
     function createProductsSelecteds(product: Coffees, count: number) {
 
         const coffeData = {
@@ -95,6 +90,7 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
         }
     }
 
+    // Função para modificar a quantidade dos pedidos
     function changeQuantityInCart(countCoffees: number, coffeID: number) {
 
         if (totalCoffees) {
@@ -111,7 +107,7 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     }
 
 
-
+    // Função para remover pedido do carrinho
     function removeCartItem(cartItemId: number) {
 
         // USANDO IMMER
@@ -133,30 +129,33 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
 
     }
 
+    // Criada para guardar informações do formulário de endereço
     function createFormAdrress(data: any) {
 
         setDataForm(data)
-        
+
     }
 
+    // para saber qual meio de pagamento foi escolhido
     function meansOfPayment(value: any) {
         setPaymentValue(value.currentTarget.value)
     }
-    
+
 
     return (
         <CartContext.Provider value={{
             createProductsSelecteds,
-            totalCoffees,
-            cartItems,
             removeCartItem,
             createFormAdrress,
-            dataForm,
             changeQuantityInCart,
-            priceTotal,
             meansOfPayment,
-            paymentValue,
-            clearCart
+            clearCart,
+            totalCoffees,
+            cartItems,            
+            dataForm,            
+            priceTotal,            
+            paymentValue
+            
 
 
 

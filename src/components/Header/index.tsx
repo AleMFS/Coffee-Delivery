@@ -27,7 +27,7 @@ export function Header() {
 
                     <Cart>
 
-                        <NavLink to='/completeorder'>
+                        <NavLink to='/completeOrder'>
                             <ShoppingCart weight="fill" size={22} />
                         </NavLink>
 
