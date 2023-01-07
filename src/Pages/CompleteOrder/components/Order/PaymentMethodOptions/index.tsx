@@ -18,7 +18,7 @@ export function PaymentMethodOptions({ icon, text }: PaymentProps) {
     return (
         <PaymentMethod value={text} onClick={handleMeansOfPayment}>
             {icon}
-            <p>{text}</p>
+            <p>{text.toUpperCase()}</p>
         </PaymentMethod>
     )
 }

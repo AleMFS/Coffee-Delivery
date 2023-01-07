@@ -66,7 +66,7 @@ export function SelectedCoffees() {
                         </TotalPrice>
                         <NavLink to={`${dataFormEmpty === true || paymentValue === ""
                             ? "/completeOrder"
-                            : "/delivery"
+                            : "/orderConfirmed"
                             }`} >
                             <ConfirmButton form="my-form" onClick={handleAlertForm} > CONFIRMAR PEDIDO</ConfirmButton>
                         </NavLink>
