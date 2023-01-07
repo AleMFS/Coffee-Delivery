@@ -19,7 +19,7 @@ export function AddressForm() {
 
     return (
 
-        <InputArea id="my-form" onSubmit={handleSubmit(handleSubmitForm)}>
+        <InputArea id="my-form" onBlur={handleSubmit(handleSubmitForm)}>
 
 
             <InputCEPForm placeholder="CEP" id='cep' type="text" className="cep"  {...register('cep', { valueAsNumber: true })} required />

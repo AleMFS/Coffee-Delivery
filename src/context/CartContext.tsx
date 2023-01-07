@@ -20,6 +20,8 @@ interface CartContextType {
     dataForm: AdrressForm[]
     changeQuantityInCart: (number: number, id: number) => void
     priceTotal: number
+    meansOfPayment: (value: any) => void,
+    paymentValue:string
 
 
 
@@ -38,6 +40,7 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     const [cartItems, setCartItems] = useState<Coffees[]>([])
     const [dataForm, setDataForm] = useState<AdrressForm[]>([])
     const [priceTotal, setPriceTotal] = useState(0)
+    const [paymentValue, setPaymentValue] = useState("")
     const totalCoffees = cartItems.length
 
 
@@ -53,7 +56,7 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
         update()
     }, [cartItems])
 
-    
+
 
     function createProductsSelecteds(product: Coffees, count: number) {
 
@@ -130,7 +133,10 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
         console.log(dataForm)
     }
 
-
+    function meansOfPayment(value: any) {
+        setPaymentValue(value.currentTarget.value)
+    }
+    console.log(dataForm)
 
     return (
         <CartContext.Provider value={{
@@ -141,7 +147,9 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
             createFormAdrress,
             dataForm,
             changeQuantityInCart,
-            priceTotal
+            priceTotal,
+            meansOfPayment,
+            paymentValue
 
 
 

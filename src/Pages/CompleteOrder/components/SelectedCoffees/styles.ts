@@ -63,8 +63,8 @@ export const ConfirmButton = styled.button`
     margin-top: 1.5rem;
     border-radius: 6px;
     border: none;
-    background: ${({theme}) => theme.colors.yellow};
-    color: ${({theme}) => theme.colors["base-white"]};
+    background: ${({ theme }) => theme.colors.yellow};
+    color: ${({ theme }) => theme.colors["base-white"]};
     font-size: 0.875rem;
     font-weight: bold;
     line-height: 1.6;
@@ -74,6 +74,12 @@ export const ConfirmButton = styled.button`
     align-items: center;
 
     &:hover{
-        background: ${({theme}) => theme.colors["yellow-dark"]};
+        background: ${({ theme }) => theme.colors["yellow-dark"]};
     }
 `
+
+export const CartEmpty = styled.p`
+  color: ${(props) => props.theme.colors.purple};
+  font-size: 0.875rem;
+  font-family: "Baloo 2";
+`;

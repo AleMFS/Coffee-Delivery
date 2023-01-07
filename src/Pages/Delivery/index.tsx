@@ -30,9 +30,9 @@ export function Delivery() {
                             icon={<Timer size={16} weight='fill' />}
                             statusColor='yellow'
                             text={
-                                <span> Pagamento na entrega
+                                <span> Previsão de entrega
                                     <br />
-                                    <strong>Cartão de Crédito </strong></span>
+                                    <strong>20 min - 30 min </strong></span>
 
                             }
                         />
