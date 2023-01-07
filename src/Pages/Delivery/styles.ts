@@ -48,7 +48,7 @@ export const DeliveryData = styled.div`
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    max-width: 22.125rem;
+    max-width: 24.125rem;
     gap: 0.75rem;
 
    

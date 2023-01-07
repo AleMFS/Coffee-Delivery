@@ -23,7 +23,7 @@ export function Delivery() {
                             icon={<MapPin size={16} weight='fill' />}
                             statusColor='purple'
                             text={
-                                <span>Entrega em <strong>: {dataForm.rua} </strong>
+                                <span>Entrega em <strong>: {dataForm.rua}, {dataForm.numero} </strong>
                                     <br />
                                     {dataForm.bairro} - {dataForm.cidade}, {dataForm.uf}
                                 </span>
