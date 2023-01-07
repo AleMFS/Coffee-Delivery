@@ -8,7 +8,7 @@ import { CartEmpty, CheckOut, CheckOutContainer, ConfirmButton, SelectedCoffeesC
 
 
 export function SelectedCoffees() {
-    const { cartItems, priceTotal, dataForm, paymentValue } = useContext(CartContext)
+    const { cartItems, priceTotal, dataForm, paymentValue ,clearCart} = useContext(CartContext)
     const frete = priceTotal ? 3.5 : 0
 
     const [dataFormEmpty, setDataFormEmpty] = useState(true);
@@ -30,6 +30,8 @@ export function SelectedCoffees() {
             alert("Preencha os dados de entrega para seguir! 🏠");
         } else if (paymentValue === "") {
             alert("Por favor, escolha uma forma de pagamento!");
+        }else{
+            clearCart()
         }
     }
 

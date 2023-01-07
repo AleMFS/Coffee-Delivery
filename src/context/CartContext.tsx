@@ -22,6 +22,7 @@ interface CartContextType {
     priceTotal: number
     meansOfPayment: (value: any) => void,
     paymentValue:string
+    clearCart: () =>void
 
 
 
@@ -45,6 +46,9 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
 
     console.log(dataForm)
 
+    function clearCart(){
+        setCartItems([])
+    }
 
     function update() {
 
@@ -151,7 +155,8 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
             changeQuantityInCart,
             priceTotal,
             meansOfPayment,
-            paymentValue
+            paymentValue,
+            clearCart
 
 
 
