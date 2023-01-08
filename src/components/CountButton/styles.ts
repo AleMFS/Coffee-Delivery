@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const CountContainer = styled.div`  
-    width: 72px;
-    height: 38px;
+    width: 4.5rem;
+    height: 2.375rem;
     padding: 0 0.5rem;
     display: flex;
     justify-content: space-around;
@@ -28,8 +28,11 @@ export const BaseButtonQuantity = styled.button`
     &:hover{
     color: ${({ theme }) => theme.colors["purple-dark"]};
     }
+
+   
 `
 export const MoreQuantitySelect = styled(BaseButtonQuantity)`
+
 
 `
 export const LessQuantitySelect = styled(BaseButtonQuantity)`

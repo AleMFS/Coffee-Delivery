@@ -102,6 +102,7 @@ export const ButtonCartBuy = styled.button`
 
     svg{
         color: ${({theme}) => theme.colors["base-white"]};
+        font-size: 1.375rem;
     }
 
     &:hover{

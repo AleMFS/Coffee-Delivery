@@ -11,14 +11,16 @@ export function OurCoffees() {
     return (
         <CoffeeContainer>
             <CoffeeContent>
-                <h1>Nossos Cafés</h1>
-                <CoffeeInfo>
-                    {Coffees.map(coffee => (
-                        <CoffeeList coffee={coffee} key={coffee.id} />                      
-                        
-                    ))}
-             
-                </CoffeeInfo>
+                <h2>Nossos Cafés</h2>
+                
+                    <CoffeeInfo>
+                        {Coffees.map(coffee => (
+                            <CoffeeList coffee={coffee} key={coffee.id} />
+
+                        ))}
+
+                    </CoffeeInfo>
+                
             </CoffeeContent>
         </CoffeeContainer>
     )

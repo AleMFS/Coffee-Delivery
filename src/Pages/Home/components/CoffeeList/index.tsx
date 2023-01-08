@@ -71,7 +71,7 @@ export function CoffeeList({ coffee }: CoffeeDataProps) {
                             createProductsSelecteds(coffee, count)
                         }}
                     >
-                        <ShoppingCartSimple size={22} weight="fill" />
+                        <ShoppingCartSimple  weight="fill" />
                     </ButtonCartBuy>
                 </CartBuy>
             </Buy>

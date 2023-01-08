@@ -7,15 +7,34 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     outline: none;
   }
+  html{
+    
+    @media (max-width: 1150px) {
+      font-size: 87.5%;
+    }
+
+    @media (max-width: 1000px) {
+        font-size: 62.5%;
+    }
+    @media (max-width: 746px) {
+        font-size: 55%;
+    }
+    
+  }
   body {
-    background: ${({theme}) => theme.colors["base-background"]};
+    background: ${({ theme }) => theme.colors["base-background"]};
     color: ${({ theme }) => theme.colors["base-text"]};
     -webkit-font-smoothing: antialiased;
+
+    
+
   }
   body, input, textarea, button {
     font-family: 'Roboto', sans-serif ;
     font-weight: 400;
     font-size: 1rem;
+
+    
   }
   button {
     cursor: pointer;
@@ -42,3 +61,4 @@ export const GlobalStyle = createGlobalStyle`
     background: ${({ theme }) => theme.colors["purple"]}
   }
 `;
+
