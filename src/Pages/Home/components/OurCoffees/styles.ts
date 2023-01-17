@@ -6,6 +6,40 @@ display: flex;
 width: 100%;
 max-width: 70rem;
 margin: 0 auto;
+
+
+.title{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    div{
+        display: flex;
+        gap: 0.5rem;
+
+        label{
+            background: ${props => props.theme.colors.purple};
+            color: ${props => props.theme.colors["base-white"]};
+            font-weight: bold;
+            border-radius: 6px;
+            padding: 0.75rem;
+
+            input[type="radio"] {
+            display: none;
+            }
+
+            :hover{
+                background: ${props => props.theme.colors["purple-dark"]};
+                
+            }
+            
+        }
+    }
+
+    .active{
+                background: ${props => props.theme.colors["purple-dark"]};
+            }
+}
 `
 
 export const CoffeeContent = styled.div`

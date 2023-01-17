@@ -26,4 +26,6 @@ In the directory you can run:
 
 <br>
 
-![](.//src//assets//Page.gif)
+![](.//src//assets//Coffee.gif)
+
+![](.//src//.//assets/Delivery.png)
