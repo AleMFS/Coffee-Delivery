@@ -7,6 +7,7 @@ import { CartContext } from '../../../../context/CartContext';
 
 
 
+
 export interface CreateProductsSelectedData {
     price: number;
     image?: string;
@@ -49,7 +50,7 @@ export function CoffeeList({ coffee }: CoffeeDataProps) {
     return (
         <CoffeeListContainer >
 
-            <img src={isProduction ? coffee.image :`../../public${coffee.image}`} alt="" />
+            <img src={isProduction ? coffee.image :`../../../../../public${coffee.image}`} alt="" />
             <Tags>
                 {coffee.tags.map(tag => (
                     <span key={tag}>{tag}</span>
