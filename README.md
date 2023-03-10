@@ -4,8 +4,9 @@
 # 🖥️ Project 
  
      Complete purchase flow with product shelf, cart, checkout and confirmed order.
+ # [Link do Projeto ](https://coffee-deliveryamf.netlify.app/)    
 
-     Link: https://coffee-deliveryamf.netlify.app/
+ 
 
 # 🛠️ Tools used 
 
