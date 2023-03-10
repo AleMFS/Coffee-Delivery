@@ -32,6 +32,7 @@ interface CoffeeDataProps {
 
 
 export function CoffeeList({ coffee }: CoffeeDataProps) {
+    const isProduction = process.env.NODE_ENV === 'production';
     const { createProductsSelecteds, } = useContext(CartContext)
 
     const formattedPrice = formatMoney(coffee.price)
@@ -48,7 +49,7 @@ export function CoffeeList({ coffee }: CoffeeDataProps) {
     return (
         <CoffeeListContainer >
 
-            <img src={coffee.image} alt="" />
+            <img src={isProduction ? coffee.image :`../../public${coffee.image}`} alt="" />
             <Tags>
                 {coffee.tags.map(tag => (
                     <span key={tag}>{tag}</span>
