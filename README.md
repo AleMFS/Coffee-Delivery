@@ -5,6 +5,8 @@
  
      Complete purchase flow with product shelf, cart, checkout and confirmed order.
 
+     Link: https://coffee-deliveryamf.netlify.app/
+
 # 🛠️ Tools used 
 
 - [Vite](https://vitejs.dev/)
