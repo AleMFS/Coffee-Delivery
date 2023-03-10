@@ -20,7 +20,7 @@ export function OurCoffees() {
                 <div className="title">
                     <h2>Nossos Cafés</h2>
                     <div>
-                        <label className={selectedOption === 'Todos' ? 'active' : ''}>
+                        <label className={selectedOption === '' ? 'active' : ''}>
                             <input
                                 type="radio"
                                 value="Todos"
